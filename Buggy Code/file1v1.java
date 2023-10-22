@@ -1,4 +1,4 @@
-public class file1v2 {
+public class file1v1 {
     
     public int fun ( int a, int b, String type) {
 
@@ -41,7 +41,7 @@ public class file1v2 {
     }
     
     public static void main ( String [] args ) {
-    System.out.print(new file1v2().fun(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]));
+    System.out.print(new file1v1().fun(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]));
     System.out.print("\n");
     }
     }

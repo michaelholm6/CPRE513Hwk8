@@ -1,43 +1,80 @@
 from unidiff import PatchSet
 import os
-from diff_match_patch import diff_match_patch
 import subprocess
 import numpy as np
+import math
+import shutil
 
-print(os.getcwd())
-patch = PatchSet.from_filename('Homework8/output.diff', encoding='utf-8')
-chunk_list = []
-original_file = input('Path to original file source code\n')
-buggy_file = input('Path to buggy file source code\n')
-original_executable = input('Path to original executable\n')
-buggy_file = buggy_file.strip()
-original_file = original_file.strip()
-original_file = open(original_file, 'r')
-original_file = original_file.read()
-buggy_file = open(buggy_file, 'r')
-buggy_file = buggy_file.read()
-patch_array = np.asarray(patch[0])
+def detect_bug(original_source_code, patch_indeces, patch_collection):
 
-diff_file = ''
+    patch_indeces = [0,1,2,3,4,5,6,7,8,9,10]
 
-for i, chunk in enumerate(patch_array[[0, -1]]): 
-    diff_file = diff_file + str(chunk)
+    if os.path.isfile('patch_file.patch'):
+        os.remove('patch_file.patch')
+
+    if os.path.isfile('file1v1.java'):
+        os.remove('file1v1.java')
+       
+    shutil.copy(original_source_code, 'file1v1.java')
+
+    for patch_index in patch_indeces:
+            patch_collection[patch_index]
+            patch = open('patch_file.patch', "a")
+            patch.write(str(patch_collection[patch_index]))
+
+    os.system('patch file1v1.java patch_file.patch')
+
+    os.system('javac file1v1.java')
     
-dmp = diff_match_patch()
-dmp.Match_Threshold = 1
-dmp.Patch_DeleteThreshold = 1
-patch = dmp.patch_fromText(diff_file)
+    output = subprocess.Popen(["java", "file1v1", "5", "0", "division"], stdout=subprocess.PIPE).communicate()[0]
+    
+    if "b''" == str(output):
+        return True
+    
+    else:
+        return False
+        
+def delta_debugging(c, r, original_source_code, patch_collection):
+    c1 = (0, math.floor(len(c)/2))
+    c1 = c[c1[0]:c1[-1]]
+    c2 = (math.floor(len(c)/2), len(c))
+    c2 = c[c2[0]:c2[-1]]
+    
+    if len(c) == 1:
+        print(found_bug_list.append(c))
+        
+    detect_bug(original_source_code, c1, patch_collection)
+    
+    return
 
-patched_file = original_file
+cwd = os.getcwd()
+chunk_list = []
+original_file = input('Absolute path to original file source code\n')
+buggy_file = input('Absolute path to buggy file source code\n')
+folder_name = input('Give a new folder name to store temporary data in (This folder will be deleted at the end of the process)\n')
 
-patched_file, _ = dmp.patch_apply(patch, original_file)
+if os.path.exists(folder_name):
+    raise Exception('Provide a folder name that doesn\'t already exist')
 
-if not os.path.exists('temp_folder'):
-    os.mkdir('temp_folder')
+os.mkdir(folder_name)
 
-patched_file_opened = open('temp_folder/java1v2.java', 'w')
-patched_file_opened.write(patched_file)
-patched_file_opened.close()
-proc = os.system('javac temp_folder/java1v2.java')
+os.chdir(os.path.join(cwd, folder_name))
 
-pass
+os.system('diff -U 0 ' + repr(original_file) + ' ' + repr(buggy_file) + ' > output.diff')
+patch = PatchSet.from_filename('output.diff', encoding='utf-8')
+    
+patch_index_list = [i for i in range(len(patch[0]))]
+    
+found_bug_list = []
+
+delta_debugging(patch_index_list, [], original_file, patch[0])
+    
+    
+    
+        
+    
+    
+    
+    
+    
+
