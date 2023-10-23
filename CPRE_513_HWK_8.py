@@ -24,7 +24,7 @@ def detect_bug(original_source_code, patch_indeces, r, patch_collection, config_
     
     patch_indeces = sorted(patch_indeces + r)
     
-    print(patch_indeces, end=' ')
+    print([x+1 for x in patch_indeces], end=' ')
 
     for patch_index in patch_indeces:
             patch_collection[patch_index]
@@ -57,7 +57,7 @@ def delta_debugging(c, r, original_source_code, patch_collection):
     c2 = c[c2[0]:c2[-1]]
     
     if len(c) == 1:
-        found_bug_list.append(c)
+        found_bug_list.append(c[0])
         return
         
     elif detect_bug(original_source_code, c1, r, patch_collection, 1):
@@ -103,7 +103,7 @@ found_bug_list = []
 
 delta_debugging(patch_index_list, [], original_file, patch[0])
 
-print('Changes where bugs occured:' + str(found_bug_list[0]))
+print('Changes where bugs occured:' + str([y+1 for y in found_bug_list]))
     
 os.chdir('..')
     
