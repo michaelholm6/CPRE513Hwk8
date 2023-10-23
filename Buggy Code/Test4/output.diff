@@ -1,0 +1,54 @@
+--- "/home/mdholm/Desktop/Homework8/Original Code/file1v1.java"	2023-10-22 12:08:19.586501613 -0500
++++ "/home/mdholm/Desktop/Homework8/Buggy Code/file1v1.java"	2023-10-22 12:08:21.606459073 -0500
+@@ -2 +2 @@
+-
++    
+@@ -4 +4 @@
+-    int x = 0;
++
+@@ -9 +9,5 @@
+-    int y ;
++    if (type.equals("multiplication")){
++    return a * b;
++    }
++    
++    int ax = 0;
+@@ -11 +15,2 @@
+-
++    a ++;
++    a --;
+@@ -14 +18,0 @@
+-
+@@ -16,2 +19,0 @@
+-    a --;
+-    a ++;
+@@ -20 +22,4 @@
+-
++    int by = 0;
++    if ( type.equals ("addsquare") ) {
++    return ( a * a + b * b ) ;
++    }
+@@ -22 +27,5 @@
+-
++    
++    if ( type.equals ("division") ) {
++    return a / b ;
++    }
++    
+@@ -26,3 +35,3 @@
+-    int v = 0;
+-
+-    return 0;
++    
++    if ( type.equals("addsubsquare") ) {
++    return ((( a + b ) * ( a * b ) ) - (( a - b ) * ( a - b ) ) ) ;
+@@ -30 +39,4 @@
+-
++    
++    return 1;
++    }
++    
+@@ -32,2 +44 @@
+-    System.out.print(new file1v1 () . fun ( Integer . parseInt ( args [0]) , Integer . parseInt ( args [1]) ,
+-    args [2])) ;
++    System.out.print(new file1v1().fun(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]));

@@ -37,9 +37,9 @@ def detect_bug(original_source_code, patch_indeces, r, patch_collection, config_
 
     os.system('javac file1v1.java')
     
-    output = subprocess.Popen(["java", "file1v1", "5", "0", "division"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL).communicate()[0]
+    output = subprocess.Popen(["java", "file1v1", "5", "0", "division"], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE).communicate()[1]
     
-    if "b''" == str(output):
+    if "/ by zero" in str(output):
         print('Fail')
         step_number += 1
         return True
