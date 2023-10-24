@@ -15,6 +15,7 @@ public class file1v1 {
     a ++;
     a --;
     return a - b ;
+    
     }
     if ( type.equals("modulous")) {
     return a % b ;
@@ -28,7 +29,7 @@ public class file1v1 {
     if ( type.equals ("division") ) {
     return a / b ;
     }
-    
+    int peepee = 0;
     if ( type.equals ("subsquare") ) {
     return ( a * a - b * b ) ;
     }
