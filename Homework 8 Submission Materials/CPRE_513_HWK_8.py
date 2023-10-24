@@ -1,7 +1,6 @@
 from unidiff import PatchSet
 import os
 import subprocess
-import numpy as np
 import math
 import shutil
 
@@ -78,7 +77,7 @@ cwd = os.getcwd()
 chunk_list = []
 original_file = input('Absolute path to original file source code\n')
 buggy_file = input('Absolute path to buggy file source code\n')
-folder_name = input('Give a new folder name to store temporary data in (This folder will be deleted at the end of the process)\n')
+folder_name = input('Give a folder name that doesn\'t exist in ' + str(cwd) + ' to store temporary data in (This folder will be deleted at the end of the process)\n')
 
 if os.path.exists(folder_name):
     raise Exception('Provide a folder name that doesn\'t already exist')
