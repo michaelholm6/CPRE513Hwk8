@@ -22,7 +22,7 @@ If you don't have pip, install it using the command "sudo apt update" then "sudo
 
 If you don't have venv, install it using the command "python --version" to check your version of python,
 then run "sudo apt install python<version>-venv", replacing <version> with the first two version of numbers of
-your python. For example, if you have python 3.10.12, replace version with 3.10. 
+your python. For example, if you have python 3.10.12, replace <version> with 3.10 
 
 Once this is all setup, find the requirements.txt file in the same folder as this file.
 
