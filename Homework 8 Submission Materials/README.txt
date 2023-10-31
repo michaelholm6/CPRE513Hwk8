@@ -32,6 +32,12 @@ Run the command "source <environment_name>/bin/activate" to activate the environ
 
 Run the command "pip install -r <path/to/requirements.txt>"
 
+Now, you must have two source code files you are planning to debug with this script. For this assignment, these source code files are file1v1.java and file1v2.java.
+Because these two source code files have a public class named file1v1 declared in them, you must rename file1v2.java to file1v1.java, and store it in some
+seperate directory from the original file1v1.java.
+
+Next, both of the file1v1.java source code files must have any package declarations at line 1 deleted, and those changes saved.
+
 Finally, run the script using the command "python3 <path/to/CPRE_513_HWK_8.py>"
 
 Follow the terminal prompts that this script creates.
